@@ -91,9 +91,4 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 ## License
 
-> Add your license here (e.g. MIT). If you haven't chosen one yet, [choosealicense.com](https://choosealicense.com/) can help.
-
-## Author
-
-**Roshan1401**
-- GitHub: [@Roshan1401](https://github.com/Roshan1401)
+ISC
