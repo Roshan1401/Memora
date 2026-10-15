@@ -4,21 +4,21 @@ import { signIn } from "next-auth/react";
 
 export default function AuthForm() {
   return (
-    <div className="mx-auto w-full border-2 border-red-900 bg-[#eadbbc] rounded-2xl px-15 py-10 text-center shadow-[0_12px_30px_rgba(60,35,15,0.7)]">
-      <h1 className="text-4xl font-medium font-serif tracking-tight text-black">
+    <div className="mx-auto w-full border-2 border-black bg-[#eadbbc] rounded-2xl px-5 py-7 sm:px-10 sm:py-9 text-center shadow-[5px_5px_0_0_#000]">
+      <h1 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight text-black">
         Welcome Back
       </h1>
-      <p className="mt-2 text-lg font-semibold font-caveat text-[#4d4b46]">
-        Login to continue to your journey
+      <p className="mt-2 text-base sm:text-lg font-semibold font-caveat text-[#4d4b46]">
+        Login to continue your journey
       </p>
 
       <button
         type="button"
         onClick={() => signIn("google", { callbackUrl: "/" })}
-        className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2  bg-[#bb2214] border-2 rounded-full border-[#bb2214] px-4 py-3 text-sm font-medium text-neutral-50  transition-transform hover:-translate-y-0.5  "
+        className="mt-6 sm:mt-8 flex w-full cursor-pointer items-center justify-center gap-3 border-2 border-black bg-[#bb2214] px-4 py-3 text-sm font-black uppercase tracking-wider text-white shadow-[3px_3px_0_0_#000] transition-all hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 rounded-full"
       >
         <svg
-          className="h-6 w-6 bg-white p-1  rounded-full"
+          className="h-6 w-6 bg-white p-1 rounded-full shrink-0"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
@@ -39,7 +39,7 @@ export default function AuthForm() {
             d="M12 4.77c1.76 0 3.35.6 4.59 1.8l3.44-3.44A11.92 11.92 0 0 0 12 0 11.99 11.99 0 0 0 1.29 6.6l4.01 3.1C6.24 6.87 8.88 4.77 12 4.77Z"
           />
         </svg>
-        Continue with Google
+        <span>Continue with Google</span>
       </button>
     </div>
   );

@@ -50,22 +50,22 @@ export default function MemoriesPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex flex-wrap items-start justify-between gap-3">
+    <div className="flex flex-col gap-4 sm:gap-6">
+      <header className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-black/20 pb-2 sm:pb-3">
         <div>
-          <h1 className="inline-flex items-center gap-3 text-4xl font-black uppercase tracking-tight text-black">
-            <span className="grid h-12 w-12 place-items-center border-2 border-black bg-yellow-300 text-black shadow-[3px_3px_0_0_#000]">
-              <BookMarked className="h-6 w-6" />
+          <h1 className="inline-flex items-center gap-2.5 sm:gap-3 text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-black">
+            <span className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center border-2 border-black bg-yellow-300 text-black shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000]">
+              <BookMarked className="h-5 w-5 sm:h-6 sm:w-6" />
             </span>
-            Memories
+            <span>Memories</span>
           </h1>
-          <p className="mt-2 text-sm font-bold text-[#4d4b46]">
+          <p className="mt-1 text-xs sm:text-sm font-bold text-[#4d4b46]">
             Every moment you captured, all in one place.
           </p>
         </div>
 
         {!loading && allMoments.length > 0 && (
-          <span className="border-2 border-black bg-white px-3 py-1.5 text-sm font-black uppercase text-black shadow-[3px_3px_0_0_#000]">
+          <span className="border-2 border-black bg-white px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm font-black uppercase text-black shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000]">
             {visibleMoments.length} / {allMoments.length} moments
           </span>
         )}
@@ -87,11 +87,11 @@ export default function MemoriesPage() {
       )}
 
       {loading ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
             <div
               key={i}
-              className="h-48 animate-pulse border-2 border-black bg-[#f1efe7] shadow-[4px_4px_0_0_#000]"
+              className="h-44 sm:h-48 animate-pulse border-2 border-black bg-[#f1efe7] shadow-[3px_3px_0_0_#000] sm:shadow-[4px_4px_0_0_#000]"
             />
           ))}
         </div>
@@ -102,7 +102,7 @@ export default function MemoriesPage() {
           onClearFilters={clearFilters}
         />
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visibleMoments.map((moment) => (
             <MemoryCard key={`${moment.dateSlug}-${moment.id}`} item={moment} />
           ))}

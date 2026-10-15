@@ -17,8 +17,17 @@ export default function AuthLayout({
         sizes="100vw"
         className="object-cover"
       />
-      <Image src={Cat} alt="Cat" className="absolute w-85 z-999 h-45 top-42" />
-      <div className="relative z-10 w-full max-w-md px-4 py-10">{children}</div>
+      <div className="relative z-10 flex w-full max-w-md flex-col items-center px-4 py-6 sm:py-10">
+        <div className="relative -mb-5 z-20 w-40 sm:w-52 pointer-events-none select-none">
+          <Image
+            src={Cat}
+            alt="Memora cat"
+            priority
+            className="h-auto w-full object-contain"
+          />
+        </div>
+        {children}
+      </div>
     </div>
   );
 }

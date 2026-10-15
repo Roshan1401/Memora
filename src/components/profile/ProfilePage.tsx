@@ -91,36 +91,36 @@ export default function ProfilePage() {
   const notLoggedIn = status === "unauthenticated";
 
   return (
-    <div className="relative flex min-w-0 flex-1 flex-col">
+    <div className="relative flex min-w-0 flex-1 flex-col py-4 sm:py-8">
       <Image
         src={profileBg}
         alt=""
         fill
         priority={false}
         sizes="100vw"
-        className="-z-10 object-cover border-6 border-black"
+        className="-z-10 object-cover border-2 sm:border-3 border-black"
       />
 
-      <div className="relative flex flex-1 flex-col justify-center gap-6">
+      <div className="relative flex flex-1 flex-col justify-center px-2.5 sm:px-4">
         {!hasHydrated || status === "loading" || !profileLoaded ? (
-          <div className="h-80 w-full max-w-xl self-center animate-pulse border-2 border-black bg-[#f1efe7] shadow-[5px_5px_0_0_#000]" />
+          <div className="h-80 w-full max-w-xl self-center animate-pulse border-2 border-black bg-[#f1efe7] shadow-[4px_4px_0_0_#000]" />
         ) : notLoggedIn || !profile ? (
-          <div className="mx-auto flex w-full max-w-md flex-col items-center gap-4 border-2 border-black bg-white p-8 text-center shadow-[5px_5px_0_0_#000]">
-            <p className="text-2xl font-black uppercase text-black">
+          <div className="mx-auto flex w-full max-w-md flex-col items-center gap-3.5 sm:gap-4 border-2 border-black bg-white p-6 sm:p-8 text-center shadow-[4px_4px_0_0_#000]">
+            <p className="text-xl sm:text-2xl font-black uppercase text-black tracking-tight">
               You&apos;re not logged in
             </p>
-            <p className="text-sm font-bold text-[#4d4b46]">
+            <p className="text-xs sm:text-sm font-bold text-[#4d4b46]">
               Log in to see and manage your profile.
             </p>
             <Link
               href="/sign-in"
-              className="inline-flex items-center gap-2 border-2 border-black bg-yellow-300 px-6 py-3 text-sm font-black uppercase text-black shadow-[3px_3px_0_0_#000] transition-transform hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000]"
+              className="mt-1 inline-flex items-center gap-2 border-2 border-black bg-yellow-300 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-black uppercase text-black shadow-[3px_3px_0_0_#000] transition-all hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black"
             >
               Log In
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-center py-4 text-center">
+          <div className="flex items-center justify-center py-2 sm:py-4 text-center">
             <ProfileCard
               profile={profile}
               onPhotoChange={handleAvatarChange}

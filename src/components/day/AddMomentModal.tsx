@@ -82,22 +82,29 @@ export default function AddMomentModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="moment-modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 sm:p-4 backdrop-blur-xs"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="flex max-h-[90vh] w-full max-w-lg flex-col gap-4 overflow-y-auto border-2 border-black bg-[#e6e3d9] p-6 shadow-[8px_8px_0_0_#000]">
-        <div className="flex items-center justify-between gap-2">
-          <h2 className="text-xl font-black uppercase text-black">
-            Add New Moment
+      <div className="flex max-h-[92vh] w-full max-w-lg flex-col gap-3.5 sm:gap-4 overflow-y-auto border-2 border-black bg-[#e6e3d9] p-4 sm:p-6 shadow-[5px_5px_0_0_#000] sm:shadow-[8px_8px_0_0_#000]">
+        <div className="flex items-center justify-between gap-2 border-b-2 border-dashed border-black/40 pb-3">
+          <h2
+            id="moment-modal-title"
+            className="text-lg sm:text-xl font-black uppercase text-black tracking-tight"
+          >
+            {initial ? "Edit Moment" : "Add New Moment"}
           </h2>
           <button
+            type="button"
             onClick={onClose}
-            aria-label="Close"
-            className="grid h-10 w-10 place-items-center border-2 border-black bg-white text-black shadow-[2px_2px_0_0_#000] transition-transform hover:-translate-y-0.5"
+            aria-label="Close dialog"
+            className="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center border-2 border-black bg-white text-black shadow-[2px_2px_0_0_#000] transition-all hover:-translate-y-0.5 active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
         </div>
 
@@ -145,24 +152,25 @@ export default function AddMomentModal({
         </div>
 
         <div className="flex flex-col gap-2">
-          <span className="text-sm font-black uppercase text-black">Icon</span>
-          <div className="flex flex-wrap gap-2">
+          <span className="text-xs sm:text-sm font-black uppercase text-black">Icon</span>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {options.map((emoji) => {
               const isAuto = emoji === autoEmoji;
               const isSelected = emoji === displayEmoji;
               return (
                 <button
                   key={emoji}
+                  type="button"
                   onClick={() => {
                     setManualEmoji(true);
                     setSelectedEmoji(emoji);
                   }}
                   aria-label={`Choose icon ${emoji}`}
                   title={isAuto ? `${emoji} (auto-suggested)` : emoji}
-                  className={`grid h-10 w-10 place-items-center border-2 text-xl transition-transform hover:-translate-y-0.5 ${
+                  className={`grid h-9 w-9 sm:h-10 sm:w-10 place-items-center border-2 text-lg sm:text-xl transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-black ${
                     isSelected
                       ? "border-black bg-yellow-300 shadow-[2px_2px_0_0_#000]"
-                      : "border-black bg-white"
+                      : "border-black bg-white hover:bg-yellow-50"
                   }`}
                 >
                   {emoji}
@@ -170,14 +178,13 @@ export default function AddMomentModal({
               );
             })}
           </div>
-          <p className="text-xs font-bold text-[#4d4b46]">
-            Icon is picked automatically from your text — tap any icon to choose
-            your own.
+          <p className="text-[11px] sm:text-xs font-bold text-[#4d4b46]">
+            Icon is suggested automatically from your text — tap any to override.
           </p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <span className="text-sm font-black uppercase text-black">
+          <span className="text-xs sm:text-sm font-black uppercase text-black">
             Time (Optional)
           </span>
           <div className="flex items-center gap-2">
@@ -188,13 +195,14 @@ export default function AddMomentModal({
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="flex-1 border-2 border-black bg-white px-3 py-2 text-sm font-bold text-black outline-none focus:bg-yellow-50"
+              className="flex-1 border-2 border-black bg-white px-3 py-2 text-sm font-bold text-black outline-none focus:bg-yellow-50 focus-visible:outline-2 focus-visible:outline-black"
             />
             {time && (
               <button
+                type="button"
                 onClick={() => setTime("")}
                 aria-label="Clear time"
-                className="grid h-10 w-10 shrink-0 place-items-center border-2 border-black bg-red-500 text-white shadow-[2px_2px_0_0_#000] transition-transform hover:-translate-y-0.5"
+                className="grid h-10 w-10 shrink-0 place-items-center border-2 border-black bg-red-500 text-white shadow-[2px_2px_0_0_#000] transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-black"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -202,19 +210,21 @@ export default function AddMomentModal({
           </div>
         </div>
 
-        <div className="mt-2 flex items-center justify-end gap-3 border-t-2 border-dashed border-black pt-4">
+        <div className="mt-2 flex items-center justify-end gap-2.5 sm:gap-3 border-t-2 border-dashed border-black/40 pt-4">
           <button
+            type="button"
             onClick={onClose}
-            className="border-2 border-black bg-white px-6 py-2 text-sm font-black uppercase text-black shadow-[3px_3px_0_0_#000] transition-transform hover:-translate-y-0.5"
+            className="border-2 border-black bg-white px-4 sm:px-6 py-2 text-xs sm:text-sm font-black uppercase text-black shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] transition-all hover:-translate-y-0.5 active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black"
           >
             Cancel
           </button>
           <button
+            type="button"
             onClick={save}
             disabled={!title.trim()}
-            className="border-2 border-black bg-yellow-300 px-6 py-2 text-sm font-black uppercase text-black shadow-[3px_3px_0_0_#000] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
+            className="border-2 border-black bg-yellow-300 px-5 sm:px-6 py-2 text-xs sm:text-sm font-black uppercase text-black shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] transition-all hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0 active:shadow-[1px_1px_0_0_#000] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-black"
           >
-            Save Moment
+            {initial ? "Update Moment" : "Save Moment"}
           </button>
         </div>
       </div>

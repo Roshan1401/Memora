@@ -5,7 +5,7 @@ import heroImage from "../../assets/hero.png";
 export default function Home() {
   const currentMonth = new Date().toLocaleString("default", { month: "long" });
   return (
-    <div className="relative flex-1 w-full border-6 border-black overflow-hidden">
+    <div className="relative flex flex-1 min-h-[70vh] sm:min-h-[75vh] w-full flex-col justify-between overflow-hidden border-2 sm:border-3 border-black shadow-[4px_4px_0_0_#000] sm:shadow-[6px_6px_0_0_#000]">
       <Image
         src={heroImage}
         alt=""
@@ -14,27 +14,31 @@ export default function Home() {
         sizes="100vw"
         className="-z-10 object-cover"
       />
-      <div className="flex flex-col items-start gap-4 p-10">
-        <h1 className="text-7xl font-black text-yellow-300">
+      <div className="flex flex-col items-start gap-3 sm:gap-4 p-5 sm:p-8 md:p-12">
+        <h1
+          suppressHydrationWarning
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-yellow-300 drop-shadow-[3px_3px_0_#000] break-words"
+        >
           {currentMonth.toUpperCase()}
         </h1>
-        <p className="text-3xl font-bold text-white">
+        <p className="text-xl sm:text-2xl md:text-3xl font-black tracking-wide text-white drop-shadow-[2px_2px_0_#000] leading-tight">
           GOOD DAYS, <br /> LAST FOREVER
         </p>
 
         <Link
           href="/calendar"
-          className="mt-25 inline-flex items-center gap-3 border-2 border-black bg-yellow-300 px-8 py-3 text-sm font-black uppercase text-black shadow-[5px_5px_0_0_#000] transition-transform hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#000]"
+          className="mt-8 sm:mt-14 md:mt-20 inline-flex items-center gap-3 border-2 border-black bg-yellow-300 px-6 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm font-black uppercase text-black shadow-[4px_4px_0_0_#000] transition-all hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0 active:shadow-[2px_2px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
         >
-          View Calendar
+          <span>View Calendar</span>
           <svg
-            className="h-5 w-5"
+            className="h-4 w-4 sm:h-5 sm:w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
           >
             <path d="M5 12h14" />
             <path d="m12 5 7 7-7 7" />

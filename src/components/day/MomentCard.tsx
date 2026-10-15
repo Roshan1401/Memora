@@ -16,50 +16,52 @@ export default function MomentCard({
   onDelete,
 }: MomentCardProps) {
   return (
-    <li className="flex items-stretch gap-3 border-2 border-black bg-white p-4 shadow-[3px_3px_0_0_#000]">
-      <span className="grid h-12 w-12 shrink-0 place-items-center border-2 border-black bg-[#f1efe7] shadow-[2px_2px_0_0_#000]">
+    <li className="flex items-center gap-2.5 sm:gap-3 border-2 border-black bg-white p-3 sm:p-4 shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] transition-shadow hover:shadow-[4px_4px_0_0_#000]">
+      <span className="grid h-10 w-10 sm:h-12 sm:w-12 shrink-0 place-items-center border-2 border-black bg-[#f1efe7] shadow-[2px_2px_0_0_#000]">
         {moment.emoji ? (
-          <span className="inline-flex h-8 w-8 items-center justify-center text-2xl">
+          <span className="inline-flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center text-xl sm:text-2xl">
             {moment.emoji}
           </span>
         ) : (
-          getActivityIcon(moment.title, "h-7 w-7")
+          getActivityIcon(moment.title, "h-5 w-5 sm:h-7 sm:w-7")
         )}
       </span>
 
-      <div className="min-w-0 flex flex-1 flex-col justify-center">
-        <div className="flex items-center  justify-between gap-2">
-          <h3 className="wrap-break-word text-base font-black text-black">
+      <div className="min-w-0 flex flex-1 flex-col justify-center gap-0.5">
+        <div className="flex flex-wrap items-center justify-between gap-1 sm:gap-2">
+          <h3 className="break-words [overflow-wrap:anywhere] text-sm sm:text-base font-black text-black leading-snug">
             {moment.title}
           </h3>
           {moment.time && (
-            <span className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-[#4d4b46]">
-              <Clock className="h-3.5 w-3.5" />
+            <span className="inline-flex shrink-0 items-center gap-1 text-[11px] sm:text-xs font-bold text-[#4d4b46]">
+              <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
               {moment.time}
             </span>
           )}
         </div>
         {moment.description && (
-          <p className="mt-1 wrap-break-word text-sm font-bold text-[#4d4b46]">
+          <p className="break-words [overflow-wrap:anywhere] text-xs sm:text-sm font-bold text-[#4d4b46] leading-snug">
             {moment.description}
           </p>
         )}
       </div>
 
-      <div className="flex shrink-0 items-center gap-2">
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
         <button
+          type="button"
           onClick={() => onEdit(moment)}
-          aria-label="Edit moment"
-          className="grid h-9 w-9 place-items-center border-2 border-black bg-white text-black shadow-[2px_2px_0_0_#000] transition-transform hover:-translate-y-0.5"
+          aria-label={`Edit ${moment.title}`}
+          className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border-2 border-black bg-white text-black shadow-[2px_2px_0_0_#000] transition-all hover:-translate-y-0.5 hover:bg-yellow-100 active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-1"
         >
-          <Pencil className="h-4 w-4" />
+          <Pencil className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
         <button
+          type="button"
           onClick={() => onDelete(moment.id)}
-          aria-label="Delete moment"
-          className="grid h-9 w-9 place-items-center border-2 border-black bg-red-500 text-white shadow-[2px_2px_0_0_#000] transition-transform hover:-translate-y-0.5"
+          aria-label={`Delete ${moment.title}`}
+          className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border-2 border-black bg-red-500 text-white shadow-[2px_2px_0_0_#000] transition-all hover:-translate-y-0.5 hover:bg-red-600 active:translate-y-0 active:shadow-[1px_1px_0_0_#000] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-1"
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
       </div>
     </li>
