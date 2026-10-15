@@ -59,6 +59,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { status } = useSession();
   const isLoggedIn = status === "authenticated";
+  const isLoading = status === "loading";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -82,11 +83,10 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`inline-flex items-center gap-2 border-2 px-3 py-1.5 text-xs lg:px-4 lg:py-2 lg:text-sm font-black uppercase transition-all hover:-translate-y-0.5 active:translate-y-0 ${
-                    isActive
+                  className={`inline-flex items-center gap-2 border-2 px-3 py-1.5 text-xs lg:px-4 lg:py-2 lg:text-sm font-black uppercase transition-all hover:-translate-y-0.5 active:translate-y-0 ${isActive
                       ? "border-black bg-yellow-300 text-black shadow-[3px_3px_0_0_#000]"
                       : "border-transparent text-[#4d4b46] hover:border-black hover:bg-[#faf6ec] hover:text-black"
-                  }`}
+                    }`}
                 >
                   <span className="shrink-0">{item.icon}</span>
                   <span>{item.label}</span>
@@ -96,9 +96,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Right side controls */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Formatted Date Pill */}
           <span
             suppressHydrationWarning
             className="hidden lg:inline-flex border-2 border-black bg-yellow-300 px-3 py-1.5 text-xs font-black uppercase text-black shadow-[2px_2px_0_0_#000]"
@@ -111,7 +109,13 @@ export default function Navbar() {
             })}
           </span>
 
-          {isLoggedIn ? (
+
+          {isLoading ? (
+            <div
+              aria-hidden="true"
+              className="h-10 w-10 sm:h-11 sm:w-11 animate-pulse rounded-full border-2 border-black bg-[#f1efe7]"
+            />
+          ) : isLoggedIn ? (
             <ProfileAvatar />
           ) : (
             <Link
@@ -123,7 +127,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* Mobile menu toggle */}
+
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -148,11 +152,10 @@ export default function Navbar() {
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     aria-current={isActive ? "page" : undefined}
-                    className={`flex items-center gap-3 border-2 p-3 text-sm font-black uppercase transition-transform active:translate-y-0 ${
-                      isActive
+                    className={`flex items-center gap-3 border-2 p-3 text-sm font-black uppercase transition-transform active:translate-y-0 ${isActive
                         ? "border-black bg-yellow-300 text-black shadow-[3px_3px_0_0_#000]"
                         : "border-black bg-white text-black shadow-[2px_2px_0_0_#000] hover:bg-yellow-50"
-                    }`}
+                      }`}
                   >
                     <span className="shrink-0">{item.icon}</span>
                     <span>{item.label}</span>
